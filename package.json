@@ -1,0 +1,34 @@
+{
+  "name": "mux-demux-shoe",
+  "version": "0.0.1",
+  "description": "A mux demux connection through shoe!",
+  "keywords": [],
+  "author": "Raynos <raynos2@gmail.com>",
+  "repository": "git://github.com/Raynos/mux-demux-shoe.git",
+  "main": "index",
+  "homepage": "https://github.com/Raynos/mux-demux-shoe",
+  "browserify": "browser.js",
+  "contributors": [
+    {
+      "name": "Jake Verbaten"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/Raynos/mux-demux-shoe/issues",
+    "email": "raynos2@gmail.com"
+  },
+  "dependencies": {
+    "mux-demux": "1.1.0",
+    "shoe": "0.0.3"
+  },
+  "devDependencies": {
+    "browserify": "~1.14.4"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/Raynos/mux-demux-shoe/raw/master/LICENSE"
+    }
+  ],
+  "scripts": {}
+}
