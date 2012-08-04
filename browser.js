@@ -11,11 +11,17 @@ function createMdmStream(uri) {
 
     stream.on("connect", onconnect)
 
+    stream.on("end", onend)
+
     mdm.pipe(stream).pipe(mdm)
 
     return mdm
 
     function onconnect() {
         mdm.emit("connect")
+    }
+
+    function onend() {
+        mdm.emit("end")
     }
 }

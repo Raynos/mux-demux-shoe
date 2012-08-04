@@ -11,7 +11,7 @@ var server = http.createServer(function (req, res) {
         res.end("<script src='bundle.js'></script>")
     }
 })
-server.listen(8080)
+server.listen(8082)
 
 var shoe = require("..")
 
