@@ -4,7 +4,9 @@ var shoe = require("shoe")
 module.exports = createMdmStream
 
 function createMdmStream(uri) {
-    var mdm = MuxDemux()
+    var mdm = MuxDemux({
+            error: false
+        })
         , stream = shoe(uri)
 
     stream.on("connect", onconnect)
