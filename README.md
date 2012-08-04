@@ -1,4 +1,4 @@
-# mux-demux-shoe [![build status][1]][2]
+# mux-demux-shoe
 
 A mux demux connection through shoe!
 
