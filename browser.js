@@ -1,3 +1,6 @@
+// event stream ~_~
+window.Buffer = require("buffer").Buffer
+
 var shoe = require("shoe")
     , MuxDemux = require("mux-demux")
 
