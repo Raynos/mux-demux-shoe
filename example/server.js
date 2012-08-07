@@ -20,6 +20,7 @@ var sock = shoe(function (stream) {
     if (stream.meta === "one") {
         stream.on("data", console.log.bind(console))
     }
+    stream.write("oh hi there")
 })
 
 sock.install(server, "/shoe")
