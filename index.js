@@ -19,5 +19,10 @@ function createShoeConnection(options, callback) {
         mdm.on("connection", callback)
 
         stream.pipe(mdm).pipe(stream)
+
+        // bubble mux-demux error into stream
+        mdm.on("error", function (err) {
+            stream.emit("error", err)
+        })
     }
 }
