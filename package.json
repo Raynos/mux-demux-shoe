@@ -1,6 +1,6 @@
 {
   "name": "mux-demux-shoe",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A mux demux connection through shoe!",
   "keywords": [],
   "author": "Raynos <raynos2@gmail.com>",
@@ -18,8 +18,8 @@
     "email": "raynos2@gmail.com"
   },
   "dependencies": {
-    "mux-demux": "git://github.com/Raynos/mux-demux.git",
-    "shoe": "git://github.com/Raynos/shoe.git"
+    "mux-demux": "0.2.0",
+    "shoe": "0.0.4"
   },
   "devDependencies": {
     "browserify": "~1.14.4"
