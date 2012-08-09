@@ -14,7 +14,10 @@ function createMdmStream(uri) {
 
     stream.on("connect", onconnect)
 
-    stream.on("end", onend)
+    stream.on("end", finish)
+    stream.on("close", finish)
+    mdm.on("end", finish)
+    mdm.on("close", finish)
 
     mdm.pipe(stream).pipe(mdm)
 
@@ -24,7 +27,17 @@ function createMdmStream(uri) {
         mdm.emit("connect")
     }
 
-    function onend() {
-        mdm.emit("end")
+    function finish() {
+        if (!mdm.ended) {
+            mdm.end()
+        }
+        if (!stream.ended) {
+            stream.end()
+        }
+
+        stream.removeListener("end", finish)
+        stream.removeListener("close", finish)
+        mdm.removeListener("end", finish)
+        mdm.removeListener("close", finish)
     }
 }
