@@ -18,11 +18,12 @@
     "email": "raynos2@gmail.com"
   },
   "dependencies": {
-    "mux-demux": "git://github.com/Raynos/mux-demux#patch-2",
+    "mux-demux": "2.1.2",
     "shoe": "0.0.4"
   },
   "devDependencies": {
-    "browserify": "~1.14.4"
+    "browserify": "~1.14.4",
+    "browserify-server": "~0.2.0"
   },
   "licenses": [
     {

@@ -2,6 +2,8 @@
 
 A mux demux connection through shoe!
 
+Similar to [mux-demux-net][3], basically give you a MDM connection or a MDM server through shoe
+
 ## Example Server
 
     var shoe = require("mux-demux-shoe")
@@ -40,3 +42,4 @@ A mux demux connection through shoe!
 
   [1]: https://secure.travis-ci.org/Raynos/mux-demux-shoe.png
   [2]: http://travis-ci.org/Raynos/mux-demux-shoe
+  [3]: https://github.com/Raynos/mux-demux-net

@@ -14,12 +14,10 @@ function createMdmStream(uri) {
 
     stream.on("connect", onconnect)
 
-    stream.on("end", finish)
-    stream.on("close", finish)
-    mdm.on("end", finish)
-    mdm.on("close", finish)
-
     mdm.pipe(stream).pipe(mdm)
+
+    // bubble mux-demux error into stream
+    mdm.on("error", bubbleError)
 
     return mdm
 
@@ -27,17 +25,7 @@ function createMdmStream(uri) {
         mdm.emit("connect")
     }
 
-    function finish() {
-        if (!mdm.ended) {
-            mdm.end()
-        }
-        if (!stream.ended) {
-            stream.end()
-        }
-
-        stream.removeListener("end", finish)
-        stream.removeListener("close", finish)
-        mdm.removeListener("end", finish)
-        mdm.removeListener("close", finish)
+    function bubbleError(err) {
+        stream.emit("error", err)
     }
 }

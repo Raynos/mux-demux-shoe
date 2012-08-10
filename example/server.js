@@ -1,26 +1,18 @@
 var http = require('http')
     , path = require("path")
-    , browserify = require("browserify")
+    , browserifyServer = require("browserify-server")
+    , shoe = require("..")
 
-var server = http.createServer(function (req, res) {
-    if (req.url === "/bundle.js") {
-        var b = browserify()
-        b.addEntry(path.join(__dirname, "./client.js"))
-        res.end(b.bundle())
-    } else {
-        res.end("<script src='bundle.js'></script>")
-    }
-})
-server.listen(8082)
+var handler = browserifyServer(path.join(__dirname, "static"))
+    , server = http.createServer(handler).listen(8080)
+    , sock = shoe(handleStream)
 
-var shoe = require("..")
+sock.install(server, "/shoe")
 
-var sock = shoe(function (stream) {
+function handleStream(stream) {
     // stream from MuxDemux with the meta property set
     if (stream.meta === "one") {
         stream.on("data", console.log.bind(console))
     }
     stream.write("oh hi there")
-})
-
-sock.install(server, "/shoe")
+}
