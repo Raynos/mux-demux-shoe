@@ -16,8 +16,12 @@ function createMdmStream(uri) {
 
     mdm.pipe(stream).pipe(mdm)
 
-    // bubble mux-demux error into stream
-    mdm.on("error", bubbleError)
+    // if anything ends clean everything up. This bubbles the disconnect
+    // upto boot so that boot can try reconnecting
+    stream.on("end", cleanup)
+    stream.on("close", cleanup)
+    mdm.on("end", cleanup)
+    mdm.on("close", cleanup)
 
     return mdm
 
@@ -25,7 +29,20 @@ function createMdmStream(uri) {
         mdm.emit("connect")
     }
 
-    function bubbleError(err) {
-        stream.emit("error", err)
+    function cleanup() {
+        if (!mdm.ended) {
+            mdm.end()
+        }
+        if (!stream.ended) {
+            stream.end()
+        }
+
+        mdm.destroy && mdm.destroy()
+        stream.destroy && stream.destroy()
+
+        mdm.removeListener("end", cleanup)
+        mdm.removeListener("close", cleanup)
+        stream.removeListener("end", cleanup)
+        stream.removeListener("close", cleanup)
     }
 }
